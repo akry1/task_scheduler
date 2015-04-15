@@ -12,9 +12,9 @@ import pybossa
 
 import sys
 import os
-sys.path.append(os.path.relpath("../pybossa/test"))
-from test.helper import sched
-from test.default import Test, db, with_context
+sys.path.append(os.path.abspath("../pybossa/test"))
+from helper import sched
+from default import Test, db, with_context
 
 
 class TestSched(sched.Helper):
