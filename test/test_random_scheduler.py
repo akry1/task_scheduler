@@ -12,7 +12,7 @@ import pybossa
 
 import sys
 import os
-sys.path.append(os.path.abspath("../pybossa/test"))
+sys.path.append(os.path.abspath("./pybossa/test"))
 from helper import sched
 from default import Test, db, with_context
 
