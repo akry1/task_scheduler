@@ -15,24 +15,22 @@ import os
 sys.path.append(os.path.abspath("./pybossa/test"))
 from helper import sched
 from default import Test, db, with_context
+from factories import ProjectFactory, TaskFactory
 
 
 class TestSched(sched.Helper):
-    def setUp(self):
-        super(TestSched, self).setUp()
-        self.endpoints = ['project', 'task', 'taskrun']
 
     @with_context
-    def test_get_random_task(self):
-        self._test_get_random_task()
+    def test_get_random_task(self, user=None):
+        project = ProjectFactory.create()
+        TaskFactory.create_batch(3, project=project)
+        task = pybossa.sched.new_task(project_id=1, sched='random')
 
-    def _test_get_random_task(self, user=None):
-        task = pybossa.sched.get_random_task(project_id=1)
         assert task is not None, task
 
-        tasks = db.session.query(Task).all()
+        tasks = pybossa.core.db.session.query(Task).all()
         for t in tasks:
-            db.session.delete(t)
-        db.session.commit()
-        task = pybossa.sched.get_random_task(project_id=1)
+            pybossa.core.db.session.delete(t)
+        pybossa.core.db.session.commit()
+        task = pybossa.sched.new_task(project_id=1, sched='random')
         assert task is None, task
