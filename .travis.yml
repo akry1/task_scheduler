@@ -19,6 +19,8 @@ before_install:
 - export PATH=${PATH}:`pwd`/$SWIG/vendor/bin
 install:
 - git clone --recursive https://github.com/PyBossa/pybossa.git
+- redis-server --version
+- redis-server pybossa/contrib/redis/sentinel.conf --sentinel
 - cd pybossa/
 - git checkout issue-plugins
 - pip install -r requirements.txt
