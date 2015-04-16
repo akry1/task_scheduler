@@ -19,8 +19,6 @@ before_install:
 - export PATH=${PATH}:`pwd`/$SWIG/vendor/bin
 install:
 - git clone --recursive https://github.com/PyBossa/pybossa.git
-- redis-server --version
-- redis-server pybossa/contrib/redis/sentinel.conf --sentinel
 - cd pybossa/
 - git checkout issue-plugins
 - pip install -r requirements.txt
@@ -29,6 +27,8 @@ install:
 - pip install --editable pybossa
 - cp -r random_scheduler/ pybossa/pybossa/plugins/
 before_script:
+- redis-server --version
+- redis-server pybossa/contrib/redis/sentinel.conf --sentinel
 - pip --version
 - psql -c "create user rtester with createdb login password 'rtester'" -U postgres
 - psql -c "create database pybossa_test owner rtester encoding 'UTF-8' lc_collate 'en_US.UTF-8' lc_ctype 'en_US.UTF-8' template template0;" -U postgres
