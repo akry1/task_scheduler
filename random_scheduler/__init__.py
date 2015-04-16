@@ -15,7 +15,7 @@ def get_random_task(project_id, user_id=None, user_ip=None,
                     n_answers=30, offset=0):
     """Return a random task for the user."""
     project = project_repo.get(project_id)
-    if len(project.tasks) > 0:
+    if project and len(project.tasks) > 0:
         return random.choice(project.tasks)
     else:
         return None
