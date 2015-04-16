@@ -1,0 +1,23 @@
+sudo: false
+language: python
+python:
+  - "2.7"
+before_install:
+# Install swig by compiling (sudo not allowed)
+- wget http://prdownloads.sourceforge.net/swig/$SWIG.tar.gz
+- tar -xvf $SWIG.tar.gz
+- pushd $SWIG && mkdir vendor
+- ./configure --prefix=`pwd`/vendor
+- make -j 5 && make install
+- popd
+- export PATH=${PATH}:`pwd`/$SWIG/vendor/bin
+install:
+- git clone --recursive https://github.com/PyBossa/pybossa.git
+- pip install -U pip
+- pip install --editable pybossa
+- cp -r random_scheduler/ pybossa/pybossa/plugins/
+before_script:
+- pip --version
+- psql -c "create user rtester with createdb login password 'rtester'" -U postgres
+- psql -c "create database pybossa_test owner rtester encoding 'UTF-8' lc_collate 'en_US.UTF-8' lc_ctype 'en_US.UTF-8' template template0;" -U postgres
+script: nosetests test/ pybossa/test/
