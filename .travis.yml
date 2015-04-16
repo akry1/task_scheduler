@@ -19,8 +19,11 @@ before_install:
 - export PATH=${PATH}:`pwd`/$SWIG/vendor/bin
 install:
 - git clone --recursive https://github.com/PyBossa/pybossa.git
+- cd pybossa/
+- git checkout issue-plugins
+- cd ..
 - pip install -U pip
-- pip install -e git+file://$PWD/pybossa/@issue-plugins#egg=pybossa
+- pip install --editable pybossa
 - cp -r random_scheduler/ pybossa/pybossa/plugins/
 before_script:
 - pip --version
