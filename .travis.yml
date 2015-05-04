@@ -20,7 +20,6 @@ before_install:
 install:
 - git clone --recursive https://github.com/PyBossa/pybossa.git
 - cd pybossa/
-- git checkout issue-plugins
 - pip install -r requirements.txt
 - cd ..
 - pip install -U pip
