@@ -1,3 +1,3 @@
-[![Build Status](https://travis-ci.org/PyBossa/plugin-scheduler.svg?branch=master)](https://travis-ci.org/PyBossa/plugin-scheduler)
+[![Build Status](https://travis-ci.org/PyBossa/random-scheduler.svg?branch=master)](https://travis-ci.org/PyBossa/random-scheduler)
 
 # plugin-scheduler
