@@ -1,0 +1,7 @@
+{
+    "identifier": "custom_scheduler",
+    "name": "CustomScheduler",
+    "author": "arkhumanity",
+    "description": "scheduler for PyBossa.",
+    "version": "0.0.1"
+}

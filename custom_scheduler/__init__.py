@@ -5,10 +5,10 @@ from flask.ext.plugins import Plugin
 from functools import wraps
 import random
 
-__plugin__ = "RandomScheduler"
+__plugin__ = "CustomScheduler"
 __version__ = "0.0.1"
 
-SCHEDULER_NAME = 'random'
+SCHEDULER_NAME = 'custom'
 
 
 def get_random_task(project_id, user_id=None, user_ip=None,
